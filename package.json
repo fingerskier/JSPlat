@@ -1,0 +1,39 @@
+{
+  "author": "fingerskier",
+  "description": "Phaser surface template",
+  "name": "phaser-boilerplate",
+  "version": "1.0.0",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "npx parcel build src/index.html --public-url ./",
+    "watch": "npx parcel watch src/index.html",
+    "start": "npx parcel serve src/index.html",
+    "clean": "rm -v dist/*",
+    "test": "npx eslint src"
+  },
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "phaser-boilerplate"
+  ],
+  "license": "MIT",
+
+  "dependencies": {
+    "jsstore": "^4.3.7",
+    "mqtt": "^4.2.8",
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.0.0-rc.0",
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-webmanifest": "^2.0.0-rc.0",
+    "cssnano": "^5.0.8",
+    "eslint": "^7.32.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-standard": "^5.0.0"
+  }
+}
