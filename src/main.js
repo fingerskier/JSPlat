@@ -2,16 +2,17 @@ import './lib/mqttws31.min.js'
 import Phaser from 'phaser';
 import gameConfig from './gameConfig.js';
 
-import './windowConfig.js'
-
 
 const serviceWorker = './service-worker.js'
+
+let game;
 
 
 function newGame () {
   if (game) return;
   game = new Phaser.Game(gameConfig);
 }
+
 
 function destroyGame () {
   if (!game) return;
@@ -20,7 +21,6 @@ function destroyGame () {
   game = null;
 }
 
-let game;
 
 
 if ('serviceWorker' in navigator) {
