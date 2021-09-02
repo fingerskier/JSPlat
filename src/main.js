@@ -1,6 +1,8 @@
 import './lib/mqttws31.min.js'
 import Phaser from 'phaser';
 import gameConfig from './gameConfig.js';
+import StateMachine from "./lib/StateMachine.js"
+
 
 
 const serviceWorker = './service-worker.js'
@@ -37,3 +39,7 @@ if (module.hot) {
 
 
 if (!game) newGame();
+
+
+/////////////////////////
+
