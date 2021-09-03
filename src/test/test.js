@@ -4,7 +4,8 @@ function StateMachine() {
   const O = {}
   const S = new StateMachine(O)
 
-  S.addState({
+  S
+  .add({
     name: 'one',
     onEnter: ()=>{
       console.log('enter state 1')
@@ -16,8 +17,7 @@ function StateMachine() {
       console.log('update state 1')
     },
   })
-
-  S.addState({
+  .add({
     name: 'two',
     onEnter: ()=>{
       console.log('enter state 2')
@@ -29,8 +29,7 @@ function StateMachine() {
       console.log('update state 2')
     },
   })
-
-  S.addState({
+  .add({
     name: 'three',
     onEnter: ()=>{
       console.log('enter state 3')

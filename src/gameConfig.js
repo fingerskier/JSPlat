@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
 import Game from "./scenes/Game";
-import Scene1 from "./scenes/Scene1";
-import Scene2 from "./scenes/Scene2";
-import Scene3 from "./scenes/Scene3";
+import UI from "./scenes/UI";
 
 
 export default {
@@ -25,5 +23,5 @@ export default {
     },
 	},
 
-  scene: [Game]
+  scene: [Game, UI]
 }

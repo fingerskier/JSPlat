@@ -1,4 +1,5 @@
 import KEY from '../Keys'
+import ObstaclesController from './ObstaclesController';
 import Phaser from 'phaser'
 import PlayerController from "./PlayerController";
 
@@ -20,6 +21,7 @@ export default class Game extends Phaser.Scene {
 
   init() {
     this.cursors = this.input.keyboard.createCursorKeys()
+    this.obstacles = new ObstaclesController()
   }
 
 
@@ -28,27 +30,30 @@ export default class Game extends Phaser.Scene {
 
     this.load.image(KEY.TILES, 'assets/sheet.png')
     this.load.tilemapTiledJSON(KEY.TILEMAP, 'assets/game_tiled.json')
+
+    this.load.image(KEY.IMG.STAR, 'assets/star.png')
   }
 
 
   create() {
+    this.scene.launch(KEY.SCENE.UI)
+    
+
     const map = this.make.tilemap({key: KEY.TILEMAP})
     const tileset = map.addTilesetImage('iceworld', KEY.TILES)
 
     const ground = map.createLayer(KEY.LAYER.GROUND, tileset)
+    const obstacles = map.createLayer(KEY.LAYER.OBSTACLES, tileset)
 
     ground.setCollisionByProperty({collides: true})
 
     this.cameras.main.scrollY = 400
 
 
-    const {height, width} = this.scale
-    
-
     const objectsLayer = map.getObjectLayer(KEY.LAYER.OBJECTS)
 
     objectsLayer.objects.forEach(obj=>{
-      const {name, x=0, y=0, width} = obj
+      const {name, x=0, y=0, width=0, height=0} = obj
 
       switch(name) {
         case 'penguin-spawn': {
@@ -56,11 +61,26 @@ export default class Game extends Phaser.Scene {
           .play(KEY.PLAYER.WALK)
           .setFixedRotation()
 
-          this.playerController = new PlayerController(this.penguin, this.cursors)
-          
-          this.penguin.setOnCollide(data=>{
-            this.isTouchingGround = true
-          })      
+          this.playerController = new PlayerController(this, this.penguin, this.cursors, this.obstacles)
+        }
+        break
+        
+        case KEY.OBJECT.STAR: {
+          const star = this.matter.add.sprite(x, y, KEY.IMG.STAR, undefined, {
+            isSensor: true,
+            isStatic: true,
+          })
+
+          star.setData(KEY.OBJECT.TYPE, KEY.OBJECT.STAR)
+        }
+        break
+
+        case KEY.OBJECT.SPIKES: {
+          const spike = this.matter.add.rectangle(x+(0.5*width), y+(0.5*height), width, height, {
+            isStatic: true,
+          })
+
+          this.obstacles.add(KEY.OBJECT.SPIKES, spike)
         }
         break
       }

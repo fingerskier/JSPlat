@@ -22,7 +22,7 @@ export default class StateMachine {
   }
 
 
-  addState(name, {onEnter, onExit, onUpdate}) {
+  add(name, {onEnter, onExit, onUpdate}) {
     if (!name) throw `State Machine <${this.id}>: addState must receive a 'name' parameter`
 
     this.states.set(name, {
@@ -36,7 +36,12 @@ export default class StateMachine {
   }
 
 
-  setState(name) {
+  currently(name) {
+    return this.state?.name === name
+  }
+
+
+  set(name) {
     if (!this.states.has(name)) throw `State-Machine <${this.id}> doesn't have a state named ${name}`
 
     if (this.state?.name === name) return
@@ -46,7 +51,7 @@ export default class StateMachine {
     // begin changing states
     this.isChangingState = true
 
-    console.log(`State-Machine<${this.id}> changing from ${this.state.name} to ${name}`)
+    if (this.verbose) console.log(`State-Machine<${this.id}> changing from ${this.state.name} to ${name}`)
 
     // exit the previous state
     if (this.state?.onExit) this.state.onExit()
@@ -62,7 +67,7 @@ export default class StateMachine {
 
 
   update(dt) {
-    if (this.queue.length) return this.setState(this.queue.shift())
+    if (this.queue.length) return this.set(this.queue.shift())
 
     if (this.state?.onUpdate) this.state.onUpdate()
   }

@@ -1,14 +1,25 @@
 const manual_keys = {
-  BOMB: 'BOMB',
-
+  EVENT: {
+    STAR_COLLECTED: 'STAR_COLLECTED',
+  },
+  
   IMG: {
     PENGUIN: 'IMG-PENGUIN',
     TILES: 'IMG-TILES',
+    STAR: 'IMG-STAR',
   },
-
+  
   LAYER: {
     GROUND: 'ground',
     OBJECTS: 'objects',
+    OBSTACLES: 'obstacles',
+  },
+  
+  OBJECT: {
+    BOMB: 'BOMB',
+    SPIKES: 'spikes',
+    STAR: 'star',
+    TYPE: 'TYPE',
   },
 
   PLAYER: {
@@ -18,15 +29,17 @@ const manual_keys = {
     STATE: {
       IDLE: 'PLAYER-STATE-IDLE',
       JUMP: 'PLAYER-STATE-JUMP',
+      SPIKE_HIT: 'PLAYER-STATE-SPIKE_HIT',
       WALK: 'PLAYER-STATE-WALK',
     }
   },
 
   SCENE: {
+    GAME: 'GAME_SCENE',
     ONE: 'SCENE1',
     TWO: 'SCENE2', 
     THREE: 'SCENE3',
-    GAME: 'GAME_SCENE',
+    UI: 'SCENE-UI',
   },
 
   SWEEP_SOUND: 'SWEEP_SOUND',
