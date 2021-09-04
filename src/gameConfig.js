@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Game from "./scenes/Game";
+import GameOver from "./scenes/GameOver";
 import UI from "./scenes/UI";
 
 
@@ -11,7 +12,7 @@ export default {
 
   title: 'Phaser 3 with Parcel 📦',
 
-  url: 'https://github.com/fingerskier/phaser-boilerplate',
+  url: 'https://github.com/fingerskier/JSPlat',
 
   banner: { text: 'white', background: ['#FD7400', '#FFE11A', '#BEDB39', '#1F8A70', '#004358'] },
 
@@ -23,5 +24,5 @@ export default {
     },
 	},
 
-  scene: [Game, UI]
+  scene: [Game, UI, GameOver]
 }

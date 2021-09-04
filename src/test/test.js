@@ -1,11 +1,14 @@
+import FiniteStateMachine from "../lib/FiniteStateMachine.js"
 
 
-function StateMachine() {
+export default function testInit() {
   const O = {}
-  const S = new StateMachine(O)
+  const Stater = new FiniteStateMachine(O)
 
-  S
-  .add({
+  Stater.verbose = true
+  
+  Stater
+  .addState('one', {
     name: 'one',
     onEnter: ()=>{
       console.log('enter state 1')
@@ -17,7 +20,7 @@ function StateMachine() {
       console.log('update state 1')
     },
   })
-  .add({
+  .addState('two', {
     name: 'two',
     onEnter: ()=>{
       console.log('enter state 2')
@@ -29,7 +32,7 @@ function StateMachine() {
       console.log('update state 2')
     },
   })
-  .add({
+  .addState('three', {
     name: 'three',
     onEnter: ()=>{
       console.log('enter state 3')
@@ -42,5 +45,9 @@ function StateMachine() {
     },
   })
 
-  console.log('stater', O, S)
+  setInterval(() => {
+    Stater.update(25)
+  }, 250);
+
+  return Stater
 }

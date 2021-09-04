@@ -1,4 +1,4 @@
-export default class StateMachine {
+export default class FiniteStateMachine {
   static count = 0
 
   isChangingState = false
@@ -10,6 +10,7 @@ export default class StateMachine {
     onExit: ()=>{},
     onUpdate: ()=>{},
   }
+  transitions = [{}]
 
 
   constructor(context) {
@@ -18,11 +19,11 @@ export default class StateMachine {
       this allows the enter, exit, and update fx to act upon the context-object
     */
     this.context = context
-    this.id = ++StateMachine.count
+    this.id = ++FiniteStateMachine.count
   }
 
 
-  add(name, config) {
+  addState(name, config) {
     if (!name) throw `State Machine <${this.id}>: addState must receive a 'name' parameter`
 
     this.states.set(name, {
@@ -36,12 +37,20 @@ export default class StateMachine {
   }
 
 
-  currently(name) {
+  addTransition(fromState, toState) {
+    this.transitions.push({
+      from: fromState,
+      to: toState
+    })
+  }
+
+
+  inState(name) {
     return this.state?.name === name
   }
 
 
-  set(name) {
+  setState(name) {
     if (!this.states.has(name)) throw `State-Machine <${this.id}> doesn't have a state named ${name}`
 
     if (this.state?.name === name) return
@@ -65,6 +74,19 @@ export default class StateMachine {
     this.isChangingState = false
 
     return this
+  }
+
+
+  transition(desiredState) {
+    // transition is only valid if we have a transition registered from the current state to the desired state
+    const valid = this.transitions.filter(el=>(this.inState(el.from) && (desiredState===el.to)))
+
+    if (valid) {
+      if (this.verbose) console.log(`State-Machine<${this.id}> transitioning from ${this.state.name} to ${desiredState}`)
+      this.setState(desiredState)
+    } else {
+      console.error(`State-Machine<${this.id}> does not have a transition registered from ${this.state.name} to ${desiredState}`)
+    }
   }
 
 

@@ -1,12 +1,16 @@
 const manual_keys = {
   EVENT: {
-    STAR_COLLECTED: 'STAR_COLLECTED',
+    HEALTH_CHANGED: 'EVENT-HEALTH_CHANGED',
+    SNOWMAN_STOMPED: 'EVENT-SNOWMAN_STOMPED',
+    STAR_COLLECTED: 'EVENT-STAR_COLLECTED',
   },
   
   IMG: {
+    HEALTH: 'IMG-HEALTH',
     PENGUIN: 'IMG-PENGUIN',
-    TILES: 'IMG-TILES',
+    SNOWMAN: 'IMG-SNOWMAN',
     STAR: 'IMG-STAR',
+    TILES: 'IMG-TILES',
   },
   
   LAYER: {
@@ -17,18 +21,29 @@ const manual_keys = {
   
   OBJECT: {
     BOMB: 'BOMB',
+    HEALTH: 'health',
+    PENGUIN_SPAWN: 'PENGUIN_SPAWN',
+    SNOWMAN: 'snowman',
     SPIKES: 'spikes',
     STAR: 'star',
     TYPE: 'TYPE',
+    VALUE: 'VALUE',
   },
 
   PLAYER: {
-    IDLE: 'PLAYER-IDLE',
-    JUMP: 'PLAYER-JUMP',
-    WALK: 'PLAYER-WALK',
+    ANIM: {
+      DIE: 'PLAYER-ANIM-DIE',
+      IDLE: 'PLAYER-ANIM-IDLE',
+      JUMP: 'PLAYER-ANIM-JUMP',
+      WALK: 'PLAYER-ANIM-WALK',
+    },
+    HEALTH_POINTS: 'PLAYER-HEALTH_POINTS',
     STATE: {
+      DEAD: 'PLAYER-STATE-DEAD',
       IDLE: 'PLAYER-STATE-IDLE',
       JUMP: 'PLAYER-STATE-JUMP',
+      SNOWMAN_HIT: 'PLAYER-STATE-SNOWMAN_HIT',
+      SNOWMAN_STOMP: 'PLAYER-STATE-SNOWMAN_STOMP',
       SPIKE_HIT: 'PLAYER-STATE-SPIKE_HIT',
       WALK: 'PLAYER-STATE-WALK',
     }
@@ -36,10 +51,25 @@ const manual_keys = {
 
   SCENE: {
     GAME: 'GAME_SCENE',
-    ONE: 'SCENE1',
-    TWO: 'SCENE2', 
-    THREE: 'SCENE3',
+    GAME_OVER: 'SCENE-GAME_OVER',
+    ONE: 'SCENE-1',
+    TWO: 'SCENE-2', 
+    THREE: 'SCENE-3',
     UI: 'SCENE-UI',
+  },
+
+  SNOWMAN: {
+    ANIM: {
+      IDLE: 'SNOWMAN-ANIM-IDLE',
+      WALK_LEFT: 'SNOWMAN-ANIM-WALK-LEFT',
+      WALK_RIGHT: 'SNOWMAN-ANIM-WALK-RIGHT',
+    },
+    STATE: {
+      IDLE: 'SNOWMAN-STATE-IDLE',
+      DEAD: 'SNOWMAN-STATE-DEAD',
+      MOVE_LEFT: 'SNOWMAN-STATE-MOVE_LEFT',
+      MOVE_RIGHT: 'SNOWMAN-STATE-MOVE_RIGHT',
+    },
   },
 
   SWEEP_SOUND: 'SWEEP_SOUND',
@@ -48,27 +78,6 @@ const manual_keys = {
   TILES: 'TILES',
   TILESET: 'iceworld',
 }
-
-
-// const KeyProxy = {
-//   get: (target, property, receiver)=>{
-//     if (!target[property]) {
-//       // if the property doesn't exist then we create it as a new object proxy
-//       target[property] = new Proxy({}, KeyProxy)
-//     }
-
-//     console.log(target, property, receiver)
-
-
-//     // the result is a string of the property and all parent keys concatenated
-//     const result = property
-
-//     return result
-//   }
-// }
-
-
-// const P = new Proxy({}, KeyProxy)
 
 
 export default manual_keys

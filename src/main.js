@@ -1,19 +1,13 @@
 import './lib/mqttws31.min.js'
 import Phaser from 'phaser';
 import gameConfig from './gameConfig.js';
-import StateMachine from "./lib/StateMachine.js"
 
 
+import testInit from './test/test'
+window.testInit = testInit
 
-const serviceWorker = './service-worker.js'
 
 let game;
-
-
-function newGame () {
-  if (game) return;
-  game = new Phaser.Game(gameConfig);
-}
 
 
 function destroyGame () {
@@ -24,10 +18,21 @@ function destroyGame () {
 }
 
 
+function newGame () {
+  if (game) return;
+  game = new Phaser.Game(gameConfig);
+}
+
+
 
 if ('serviceWorker' in navigator) {
+  const serviceWorker = './service-worker.js'
+
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register(serviceWorker);
+    /*
+      To enable caching for offline mode uncomment the following line
+    */
+    // navigator.serviceWorker.register(serviceWorker);
   });
 }
 
@@ -39,7 +44,3 @@ if (module.hot) {
 
 
 if (!game) newGame();
-
-
-/////////////////////////
-

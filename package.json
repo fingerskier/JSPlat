@@ -17,11 +17,11 @@
     "phaser-boilerplate"
   ],
   "license": "MIT",
-
   "dependencies": {
     "jsstore": "^4.3.7",
     "mqtt": "^4.2.8",
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "stateinator": "^1.2.0"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.0.0-rc.0",
